@@ -240,6 +240,71 @@
                         </fileset>
                     </filesets>
                 </configuration>
+	</plugin>
+	<!-- Create rpm-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>rpm-maven-plugin</artifactId>
+                <version>2.1.5</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>rpm</goal>
+                            <goal>version</goal>
+                        </goals>
+
+                        <configuration>
+                            <copyright>2017, Guavus</copyright>
+                            <group>Kafka</group>
+                            <name>confluent-${project.artifactId}</name>
+                            <needarch>noarch</needarch>
+                            <targetOS>linux</targetOS>
+                            <disabled>${skipRpm}</disabled>
+                            <release>1.guavus</release>
+                            <defaultDirmode>0755</defaultDirmode>
+                            <defaultFilemode>0644</defaultFilemode>
+                            <defaultGroupname>root</defaultGroupname>
+                            <defaultUsername>root</defaultUsername>
+                            <autoProvides>false</autoProvides>
+                            <autoRequires>false</autoRequires>
+                            <defineStatements>
+                                <defineStatement>__requires_exclude ^osgi\\(</defineStatement>
+                                <defineStatement>__provides_exclude ^osgi\\(</defineStatement>
+                            </defineStatements>
+                            <requires>
+                                <require>/bin/sh</require>
+                                <require>confluent-common</require>
+                            </requires>
+                            <mappings>
+                                <mapping>
+                                    <directory>/etc/${project.artifactId}/</directory>
+                                    <sources>
+                                        <source>
+                                            <location>${project.build.directory}/${project.artifactId}-${project.version}-package/etc/${project.artifactId}/</location>
+                                        </source>
+                                    </sources>
+                                </mapping>
+                                <mapping>
+                                    <directory>/usr/share/doc/${project.artifactId}/</directory>
+                                    <sources>
+                                        <source>
+                                            <location>${project.build.directory}/${project.artifactId}-${project.version}-package/share/doc/${project.artifactId}</location>
+                                        </source>
+                                    </sources>
+                                </mapping>
+                                <mapping>
+                                    <directory>/usr/share/java/${project.artifactId}/</directory>
+                                    <sources>
+                                        <source>
+                                            <location>${project.build.directory}/${project.artifactId}-${project.version}-package/share/java/${project.artifactId}</location>
+                                        </source>
+                                    </sources>
+                                </mapping>
+                            </mappings>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
 
