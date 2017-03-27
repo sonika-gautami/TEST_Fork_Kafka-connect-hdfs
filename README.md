@@ -1,3 +1,4 @@
+#conflict 2
 # Kafka Connect HDFS Connector
 
 kafka-connect-hdfs is a [Kafka Connector](http://kafka.apache.org/documentation.html#connect)
@@ -17,6 +18,6 @@ kafka-connect-hdfs with Maven using the standard lifecycle phases.
 - Issue Tracker: https://github.com/confluentinc/kafka-connect-hdfs/issues
 
 
-# License
+#License
 
 The project is licensed under the Apache 2 license.
