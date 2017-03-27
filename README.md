@@ -1,4 +1,5 @@
 #conflict 2
+#creating conflict-1
 # Kafka Connect HDFS Connector
 
 kafka-connect-hdfs is a [Kafka Connector](http://kafka.apache.org/documentation.html#connect)
